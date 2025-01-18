@@ -14,8 +14,6 @@ https://github.com/Elior2739/ReadyOrders
 local renderUpdates = {}
 
 local readyTrays = {}
-local updatingScreen = false
-local loopStarted = false
 
 function requestRenderOnAll()
 	local monitors = FindAllOf("BP_OrderMonitor_C")
@@ -62,7 +60,6 @@ ExecuteWithDelay(1000, function()
 		end
 	
 		local orders = FindAllOf("W_OrderMonitorElement_C")
-	
 		if(orders == nil or #orders == 0) then return end
 
 		for _, order in pairs(orders) do
@@ -72,11 +69,6 @@ ExecuteWithDelay(1000, function()
 				local orderElementTableNumber = tostring(orderItself:GetPropertyValue("TableNumber"))
 	
 				if(orderElementTableNumber == trayTableNumber) then
-					if(not loopStarted) then
-						loopStarted = true
-						LoopAsync(100, updateRender)
-					end
-
 					local orderTime = order:GetPropertyValue("OrderTimeTxt")
 					local priceTxt = order:GetPropertyValue("PriceTxt")
 					local tableNumberTxt = order:GetPropertyValue("TableNumberTxt")
@@ -109,7 +101,7 @@ ExecuteWithDelay(1000, function()
 	end)
 
 	RegisterHook("Function /Game/Blueprints/Gameplay/Order/BP_OrderManager.BP_OrderManager_C:RemoveOrder", function(self, parms)
-		local order = parms[1]
+		local order = parms:get()
 
 		if(order:GetFullName() == nil) then return end
 
@@ -117,5 +109,7 @@ ExecuteWithDelay(1000, function()
 		renderUpdates[orderTable] = nil
 		readyTrays[orderTable] = nil
 	end)
+
+	RegisterHook("Function /Game/UI/Ingame/OrderMonitor/W_OrderMonitorElement.W_OrderMonitorElement_C:OnOrderUpdated", updateRender)
 end)
 
