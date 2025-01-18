@@ -28,7 +28,6 @@ end
 
 function updateRender()
 	for orderTable, orderData in pairs(renderUpdates) do
-		hasAny = true
 		for _, func in pairs(orderData["priceFuncs"]) do
 			func:CallFunction(FText("Ready!"), FText("Ready!"))
 		end
