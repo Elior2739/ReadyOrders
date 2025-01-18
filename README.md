@@ -18,4 +18,4 @@ So this mod shows on screen if the order is ready.
 ## For The Future
 
 1. Try to make the product itself "ready"
-2. Optimize the mod and don't update the fu***** monitors every .1 seconds
+2. ~~Optimize the mod and don't update the fu***** monitors every .1 seconds~~
