@@ -11,7 +11,7 @@ So this mod shows on screen if the order is ready.
 
 ## Importent Notes
 
-1. The mod wasn't tested in multiplayer (Yeah is kind of important)
+1. The mod isn't working for multiplayer (Update soon)
 2. The mod isn't optimized and may create preformance issues
 3. The mod isn't stable and may crash the game
 
